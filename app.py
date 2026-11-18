@@ -97,11 +97,18 @@ if page == "Dashboard Overview":
     to recognize handwritten digits from the MNIST dataset.
     """)
 
-    col1, col2, col3 = st.columns(3)
+   st.subheader("Model Performance Overview")
 
-    col1.metric("Training Images", "10,000")
-    col2.metric("Testing Images", "10,000")
-    col3.metric("Model Accuracy", f"{accuracy * 100:.2f}%")
+   col1, col2, col3 = st.columns(3)
+
+   with col1:
+        st.metric("Training Images", "10,000")
+
+   with col2:
+        st.metric("Testing Images", "10,000")
+
+   with col3:
+        st.metric("Model Accuracy", f"{accuracy * 100:.2f}%")
 
     st.subheader("Dataset Information")
 
