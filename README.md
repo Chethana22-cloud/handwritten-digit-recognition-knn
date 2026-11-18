@@ -116,6 +116,7 @@ streamlit run app.py
 ```
 
 **Step 5:** Open the local URL displayed in the terminal.
+https://handwritten-digit-recognition-knn-tdmoec4syro7exbq36mbui.streamlit.app/
 
 ## 🔮 Future Enhancements
 
