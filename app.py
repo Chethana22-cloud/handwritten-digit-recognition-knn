@@ -112,13 +112,22 @@ if page == "Dashboard Overview":
 
     st.subheader("Dataset Information")
 
-    st.write("""
-    - Dataset: MNIST
-    - Image size: 28 × 28 pixels
-    - Classes: 0 to 9
-    - Algorithm: K-Nearest Neighbors
-    - K value: 5
-    """)
+info1, info2, info3 = st.columns(3)
+
+with info1:
+    st.markdown("**Dataset**")
+    st.info("MNIST")
+
+with info2:
+    st.markdown("**Image Dimensions**")
+    st.info("28 × 28 Pixels")
+
+with info3:
+    st.markdown("**Number of Classes**")
+    st.info("10 Digits (0–9)")
+
+st.markdown("**Algorithm:** K-Nearest Neighbors (KNN)")
+st.markdown("**Number of Neighbors (K):** 5")
 
 # PAGE 2: MODEL EVALUATION
 elif page == "Model Evaluation":
