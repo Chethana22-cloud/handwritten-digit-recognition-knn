@@ -184,38 +184,50 @@ elif page == "Model Evaluation":
          use_container_width=True
     )
 
-    st.subheader("Evaluation Explanation")
+    st.divider()
 
-    st.write("""
-    - Accuracy: Overall percentage of correct predictions.
-    - Precision: How many predicted digits were correct.
-    - Recall: How many actual digits were correctly identified.
-    - F1-score: Balance between precision and recall.
-    - Confusion Matrix: Shows correct and incorrect predictions.
+    st.subheader("💡 Understanding the Evaluation Metrics")
+
+    st.markdown("""
+    - **Accuracy:** Measures the overall percentage of correct predictions.
+    - **Precision:** Measures how many predicted digits were actually correct.
+    - **Recall:** Measures how many actual digits were correctly identified.
+    - **F1-score:** Combines precision and recall into a single score.
+    - **Confusion Matrix:** Shows the correct and incorrect predictions for each digit.
     """)
 
 # PAGE 3: DIGIT PREDICTION
 elif page == "Digit Prediction":
 
-    st.header("✍️ Draw Your Own Digit")
+    st.header("✍️ Handwritten Digit Prediction")
 
-    st.write("Draw a digit from 0 to 9 and click Predict Digit.")
-
-    st.info("Draw one large, clear digit near the center.")
-
-    canvas_result = st_canvas(
-        fill_color="#000000",
-        stroke_width=18,
-        stroke_color="#FFFFFF",
-        background_color="#000000",
-        height=280,
-        width=280,
-        drawing_mode="freedraw",
-        return_image_data=True,
-        key="digit_canvas"
+    st.write(
+        "Test the trained KNN model by drawing your own handwritten digit."
     )
 
-    if st.button("Predict Digit", type="primary"):
+    st.info(
+        "Instructions: Draw a single digit (0–9) in the canvas "
+        "and click the Predict Digit button."
+    )
+
+    st.subheader("Draw Your Digit Below")
+
+    canvas_col1, canvas_col2, canvas_col3 = st.columns([1, 2, 1])
+
+    with canvas_col2:
+        canvas_result = st_canvas(
+             fill_color="#000000",
+             stroke_width=18,
+             stroke_color="#FFFFFF",
+             background_color="#000000",
+             height=280,
+             width=280,
+             drawing_mode="freedraw",
+             return_image_data=True,
+             key="digit_canvas"
+        )
+
+    if st.button("🔍 Predict Digit", type="primary", use_container_width=True):
 
         if canvas_result.image_data is not None:
 
@@ -265,21 +277,38 @@ elif page == "Digit Prediction":
 
                 predicted_digit = int(prediction[0])
 
+                st.markdown("---")
+
+                st.subheader("🎯 Prediction Result")
+
                 st.success(
-                    f"Predicted Digit: {predicted_digit}"
+                    f"The recognized handwritten digit is: {predicted_digit}"
                 )
 
-                st.subheader("Processed 28 × 28 Image")
+                st.divider()
+
+                st.subheader("🖼️ Processed Image")
+
+                st.caption(
+                     "The drawing is resized to 28 × 28 pixels and converted "
+                     "into a format suitable for the KNN model."
+                )
 
                 st.image(final_image, width=200)
 
                 # Display KNN voting score
                 probabilities = knn.predict_proba(image_array)[0]
+                st.subheader("📈 Prediction Confidence")
+
+                confidence = probabilities[predicted_digit] * 100
 
                 st.metric(
-                    "KNN Voting Score",
-                    f"{probabilities[predicted_digit] * 100:.2f}%"
+                     label="KNN Voting Score",
+                     value=f"{confidence:.2f}%"
                 )
+
+                st.progress(float(confidence / 100))
+                
 
             else:
                 st.warning("Please draw a digit first.")
@@ -288,4 +317,15 @@ elif page == "Digit Prediction":
             st.warning("Please draw a digit first.")
 
 st.sidebar.markdown("---")
-st.sidebar.caption("Machine Learning Project | KNN Algorithm")
+
+st.sidebar.caption(
+    "Handwritten Digit Recognition"
+)
+
+st.sidebar.caption(
+    "Machine Learning Project | KNN Algorithm"
+)
+
+st.sidebar.caption(
+    "Built using Python and Streamlit"
+)
