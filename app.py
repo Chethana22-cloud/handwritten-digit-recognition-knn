@@ -132,11 +132,22 @@ st.markdown("**Number of Neighbors (K):** 5")
 # PAGE 2: MODEL EVALUATION
 elif page == "Model Evaluation":
 
-    st.header("Model Evaluation")
+    st.header("📊 Model Evaluation")
+
+    st.write(
+        "Evaluate the performance of the KNN model using "
+        "accuracy, confusion matrix, and classification metrics."
+    )
+
+    st.divider()
 
     st.metric("Model Accuracy", f"{accuracy * 100:.2f}%")
 
-    st.subheader("Confusion Matrix")
+    st.divider()
+    st.subheader("📌 Confusion Matrix")
+    st.caption(
+          "The confusion matrix compares actual digits with the digits predicted by the KNN model."
+    )
 
     fig, ax = plt.subplots(figsize=(9, 6))
 
@@ -157,11 +168,21 @@ elif page == "Model Evaluation":
     st.pyplot(fig)
     plt.close(fig)
 
-    st.subheader("Classification Report")
+    st.divider()
+
+    st.subheader("📋 Classification Report")
+
+    st.caption(
+        "This report displays the precision, recall, and F1-score "
+        "for each digit from 0 to 9."
+    )
 
     report_df = pd.DataFrame(report).transpose()
 
-    st.dataframe(report_df.round(3), use_container_width=True)
+    st.dataframe(
+         report_df.round(3),
+         use_container_width=True
+    )
 
     st.subheader("Evaluation Explanation")
 
