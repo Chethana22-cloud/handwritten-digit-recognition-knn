@@ -69,11 +69,14 @@ cm = data["confusion_matrix"]
 report = data["classification_report"]
 
 
-st.title("🔢 Handwritten Digit Recognition using KNN")
+st.markdown(
+    '<div class="main-title">🔢 Handwritten Digit Recognition using KNN</div>',
+    unsafe_allow_html=True
+)
 
-st.write(
-    "An interactive dashboard for handwritten digit recognition "
-    "and model evaluation using the MNIST dataset."
+st.markdown(
+    '<div class="subtitle">An Interactive Machine Learning Dashboard powered by the MNIST Dataset</div>',
+    unsafe_allow_html=True
 )
 
 # Sidebar navigation
