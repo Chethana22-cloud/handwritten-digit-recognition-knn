@@ -203,4 +203,3 @@ elif page == "Digit Prediction":
 
 st.sidebar.markdown("---")
 st.sidebar.caption("Machine Learning Project | KNN Algorithm")
-c
