@@ -1,5 +1,5 @@
 # 🔢 Handwritten Digit Recognition using KNN
-
+https://handwritten-digit-recognition-knn-tdmoec4syro7exbq36mbui.streamlit.app/
 ## 📌 Project Overview
 
 This project focuses on recognizing handwritten digits (0–9) using the K-Nearest Neighbors (KNN) machine learning algorithm.
