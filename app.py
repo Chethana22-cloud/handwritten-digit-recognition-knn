@@ -1,3 +1,4 @@
+
 import streamlit as st
 import joblib
 import numpy as np
@@ -8,6 +9,57 @@ import seaborn as sns
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 
+# Page configuration
+st.set_page_config(
+    page_title="Handwritten Digit Recognition",
+    page_icon="🔢",
+    layout="wide"
+)
+
+# Professional design
+st.markdown("""
+<style>
+.stApp {
+    background-color: #F4F7FB;
+}
+
+[data-testid="stSidebar"] {
+    background-color: #14213D;
+}
+
+[data-testid="stSidebar"] * {
+    color: white !important;
+}
+
+.main-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: #14213D;
+    text-align: center;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #64748B;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+div[data-testid="stMetric"] {
+    background-color: white;
+    border: 1px solid #E2E8F0;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.stButton > button {
+    background-color: #2563EB;
+    color: white;
+    border-radius: 8px;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # Load saved model and evaluation results
 data = joblib.load("knn_digit_model.pkl")
 
@@ -16,12 +68,6 @@ accuracy = data["accuracy"]
 cm = data["confusion_matrix"]
 report = data["classification_report"]
 
-# Page configuration
-st.set_page_config(
-    page_title="Handwritten Digit Recognition",
-    page_icon="🔢",
-    layout="wide"
-)
 
 st.title("🔢 Handwritten Digit Recognition using KNN")
 
