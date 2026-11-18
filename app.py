@@ -6,7 +6,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from PIL import Image
+from PIL import Image 
 from streamlit_drawable_canvas import st_canvas
 
 # Page configuration
